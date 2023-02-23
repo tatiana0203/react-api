@@ -6,7 +6,6 @@ class PlanetsList extends Component {
   constructor() {
     super();
     this.state = {
-      isShow: false,
       planets: [],
       planet: {
         name: "",

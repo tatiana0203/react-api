@@ -21,7 +21,7 @@ class App extends Component {
           <button >Planets</button>
           <button >Starships</button>
         </div>
-        <PeopleList resource="people"/>
+        <PeopleList />
         <PlanetsList />
         
       </div>

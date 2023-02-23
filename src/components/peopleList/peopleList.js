@@ -11,7 +11,9 @@ class PeopleList extends Component {
         name: "",
         gender: "",
         birth_year: "",
-      }
+      },
+      page:1,
+      pageCount:10
     };
   }
 
@@ -22,9 +24,10 @@ class PeopleList extends Component {
 
   setPeople = (result) => {
     this.setState({
-      people: result.results
+      people: result.results,
+      nextPage: result.next,
+      prevPage: result.previous
     });
-    console.log(this.state)
   };
 
   setPerson = (name, gender, birth_year) => {
@@ -38,8 +41,8 @@ class PeopleList extends Component {
   };
 
 
-  peopleRequest = (resource) =>
-    fetch(`https://swapi.dev/api/${resource}/?page=2`, this.requestOptions)
+  peopleRequest = (number) =>
+    fetch(`https://swapi.dev/api/people/?page=${number}`, this.requestOptions)
       .then((response) => response.json())
       .then((result) => {
         this.setPeople(result);
@@ -47,8 +50,22 @@ class PeopleList extends Component {
       .catch((error) => console.log("error", error));
 
   componentDidMount() {
-    this.peopleRequest(this.props.resource);
+    this.peopleRequest(this.state.page);
   }
+
+  nextPage = () => {
+    if (this.state.page !== this.state.pageCount) {
+      this.setState({ page: this.state.page + 1 });
+      this.peopleRequest(this.state.page);
+    }
+  };
+
+  prevPage = () => {
+    if (this.state.page !== 1) {
+        this.setState({ page: this.state.page - 1 });
+        this.peopleRequest(this.state.page);
+      }
+    };
 
   render() {
     return (
@@ -72,7 +89,9 @@ class PeopleList extends Component {
             );
           })}
 
-          <button onClick={this.changePage}>next</button>
+          <button onClick={this.prevPage}> prev</button>
+          <button onClick={this.nextPage}>next</button>
+          
         </div>
 
         <div className="card">
