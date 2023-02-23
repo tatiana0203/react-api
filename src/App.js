@@ -6,72 +6,72 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      people: [],
+      page: 1,
       person: {
         name: "",
         gender: "",
         birth_year: "",
-        hair_color: "",
-        eye_color: "",
-      },
-      starship: {
-        name: "",
-        model: "",
-        manufacturer: "",
-      },
-      planet: {
-        name: "",
-        diameter: "",
-        population: "",
-        terrain: "",
       },
     };
   }
-  setPerson = (result) => {
-    this.setState({
-      person: {
-        name: result.name,
-        gender: result.gender,
-        birth_year:result.birth_year,
-        hair_color: result.hair_color,
-        eye_color:result.eye_color
-      },
-    });
-  };
 
   requestOptions = {
     method: "GET",
     redirect: "follow",
   };
-  
-  
-  myRequest = (number) =>
-    fetch(`https://swapi.dev/api/people/${number}`, this.requestOptions)
+
+  setPeople = (result) => {
+    this.setState({
+      people: result.results,
+    });
+    console.log(this.state.people);
+  };
+
+  setPerson=(name,gender,birth_year)=>{
+    this.setState({
+      person:{
+        name:name,
+        gender:gender,
+        birth_year:birth_year
+      }
+    })
+  }
+
+  myRequest = (page) =>
+    fetch(`https://swapi.dev/api/people/?page=${page}`, this.requestOptions)
       .then((response) => response.json())
-      .then((result) => this.setPerson(result))
+      .then((result) => {
+        this.setPeople(result);
+        console.log(result);
+      })
       .catch((error) => console.log("error", error));
 
   componentDidMount() {
-    this.myRequest(45);
+    this.myRequest(this.state.page);
   }
 
   render() {
     return (
       <div>
         <div>
-          <ul>
-            <button onClick={()=>this.componentDidMount}>People</button>
-            <button>Planets</button>
-            <button>Starships</button>
-          </ul>
+          <button onClick={this.componentDidMount}>People</button>
         </div>
-        <div className="list"></div>
-        <div className="card">
-          <h2>{this.state.person.name}</h2>
-          <h2>{this.state.person.gender}</h2>
-          <h2>{this.state.person.birth_year}</h2>
-          <h2>{this.state.person.hair_color}</h2>
-          <h2>{this.state.person.eye_color}</h2>
+
+        <div className="list">
+          {this.state.people.map((person) => {
+            return (
+              <ul key={person.name}>
+                <button onClick={()=>{this.setPerson(person.name,person.gender,person.birth_year)}}>{person.name}</button>
+              </ul>
+            );
+          })}
         </div>
+
+        <div className="card"></div>
+        <h2>{this.state.person.name}</h2>
+        <h2>{this.state.person.birth_year}</h2>
+        <h2>{this.state.person.gender}</h2>
       </div>
     );
   }
