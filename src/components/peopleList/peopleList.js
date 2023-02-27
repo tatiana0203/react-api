@@ -1,34 +1,17 @@
 import React, { Component } from "react";
 
-import "./peopleList.css"
-
 class PeopleList extends Component {
   constructor() {
     super();
     this.state = {
-      people: [],
       person: {
         name: "",
         gender: "",
         birth_year: "",
       },
-      page:1,
-      pageCount:10
+      cardVisible:false
     };
   }
-
-  requestOptions = {
-    method: "GET",
-    redirect: "follow",
-  };
-
-  setPeople = (result) => {
-    this.setState({
-      people: result.results,
-      nextPage: result.next,
-      prevPage: result.previous
-    });
-  };
 
   setPerson = (name, gender, birth_year) => {
     this.setState({
@@ -37,44 +20,18 @@ class PeopleList extends Component {
         gender: gender,
         birth_year: birth_year,
       },
+      cardVisible:true
     });
+    console.log(this.state)
   };
-
-
-  peopleRequest = (number) =>
-    fetch(`https://swapi.dev/api/people/?page=${number}`, this.requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        this.setPeople(result);
-      })
-      .catch((error) => console.log("error", error));
-
-  componentDidMount() {
-    this.peopleRequest(this.state.page);
-  }
-
-  nextPage = () => {
-    if (this.state.page !== this.state.pageCount) {
-      this.setState({ page: this.state.page + 1 });
-      this.peopleRequest(this.state.page);
-    }
-  };
-
-  prevPage = () => {
-    if (this.state.page !== 1) {
-        this.setState({ page: this.state.page - 1 });
-        this.peopleRequest(this.state.page);
-      }
-    };
 
   render() {
     return (
-      <div className="people-list">
-        <div>
-          {this.state.people.map((person) => {
+      <div className="content-block">
+        <div className="list">
+           {this.props.people.map((person) => {
             return (
-              <ul key={person.name}>
-                <button
+                <button className="list-item" key={person.name}
                   onClick={() => {
                     this.setPerson(
                       person.name,
@@ -85,19 +42,19 @@ class PeopleList extends Component {
                 >
                   {person.name}
                 </button>
-              </ul>
             );
           })}
-
-          <button onClick={this.prevPage}> prev</button>
-          <button onClick={this.nextPage}>next</button>
           
         </div>
 
-        <div className="card">
-          <h2>Name : {this.state.person.name}</h2>
-          <h2>Birth year : {this.state.person.birth_year}</h2>
-          <h2>Gender : {this.state.person.gender}</h2>
+          
+        <div className={this.state.cardVisible ? "card-visible" : "card-unvisible"}>
+        <div>
+          <h3>{this.state.person.name}</h3>
+          <p>Birth year : {this.state.person.birth_year}</p>
+          <p>Gender : {this.state.person.gender}</p>
+        </div>
+         
         </div>
 
         
