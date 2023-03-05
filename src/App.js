@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import DotLoader from "react-spinners/DotLoader";
 
 import PeopleList from "./components/peopleList/peopleList";
@@ -7,85 +7,69 @@ import StarshipsList from "./components/starshipsList/starshipsList";
 
 import "./App.css";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      currentList: "",
-      list: [],
-      loading: false,
-      color: "white",
-      override: {
-        display: "block",
-        margin: "0 auto",
-        borderColor: "white",
-      },
-      hasError:false
-    };
-  }
+const  App = () => {
 
-  requestOptions = {
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
+  const [currentList,setCurrentList]=useState("");
+  const [list,setList] = useState([]);
+  const [loading,setLoading]=useState(false);
+
+  const requestOptions = {
     method: "GET",
     redirect: "follow",
   };
 
-  setList = (resource, result) => {
-    this.setState({
-      list: result.results,
-      currentList: resource,
-    });
-  };
-
-  myRequest = (resource) => {
-    this.setState({loading:!this.state.loading })
-    fetch(`https://swapi.dev/api/${resource}`, this.requestOptions)
+  const myRequest = (resource) => {
+    setLoading(true)
+    fetch(`https://swapi.dev/api/${resource}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        this.setList(resource, result)
-        this.setState({loading:!this.state.loading })
+        setCurrentList(resource)
+        setList(result.results)
+        setLoading(false)
       })
       .catch((error) => console.log("error", error));
   };
 
-  showList = (resource) => {
+  const showList = (resource) => {
     switch (resource) {
       case "people":
-        return <PeopleList people={this.state.list} />;
+        return <PeopleList people={list} />;
       case "planets":
-        return <PlanetsList planets={this.state.list} />;
+        return <PlanetsList planets={list} />;
       case "starships":
-        return <StarshipsList starships={this.state.list} />;
+        return <StarshipsList starships={list} />;
       default:
         return null;
     }
   };
 
-  render() {
+  
     return (
       <div className="main-content">
       
         <div className="buttons-menu">
-          <button onClick={() => this.myRequest("people")}>People</button>
-          <button onClick={() => this.myRequest("planets")}>Planets</button>
-          <button onClick={() => this.myRequest("starships")}>Starships</button>
+          <button onClick={() => myRequest("people")}>People</button>
+          <button onClick={() => myRequest("planets")}>Planets</button>
+          <button onClick={() => myRequest("starships")}>Starships</button>
         </div>
 
-        <div className="sweet-loading">
-          <DotLoader
-            color={this.state.color}
-            loading={this.state.loading}
-            cssOverride={this.state.override}
-            size={100}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
-
-        {this.showList(this.state.currentList)}
+        { loading ? <DotLoader 
+          className="sweet-loading"
+          color="white"
+          loading={loading}
+          cssOverride={override}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        /> : showList(currentList)}
 
       </div>
     );
-  }
 }
 
 export default App;

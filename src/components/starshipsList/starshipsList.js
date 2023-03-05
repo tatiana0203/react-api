@@ -1,39 +1,32 @@
-import React, { Component } from "react";
+import { useState } from "react";
 
+const StarshipsList = (props) => {
+  
+  const [starship,setStarship] = useState({
+    name: "",
+    model: "",
+    manufacturer: "",
+  });
+  const [card,setCard] = useState(false);
 
-class StarshipsList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      starship: {
-        name: "",
-        model: "",
-        manufacturer: "",
-      },
-      cardVisible:false
-    };
-  }
-
-  setStarship = (name, model, manufacturer) => {
-    this.setState({
-      starship: {
+  const showStarship = (name, model, manufacturer) => {
+    setStarship({
         name: name,
         model: model,
         manufacturer: manufacturer,
-      },
-      cardVisible:true
-    });
+      });
+    setCard(true)
   };
 
-  render() {
-    return (
+
+  return (
       <div className="content-block">
-        <div className="list">
-          {this.props.starships.map((starship) => {
+        <ul className="list">
+          {props.starships.map((starship) => {
             return (
-                <button className="list-item" key={starship.name}
+                <li className="list-item" key={starship.name}
                   onClick={() => {
-                    this.setStarship(
+                    showStarship(
                         starship.name,
                         starship.model,
                         starship.manufacturer
@@ -41,18 +34,18 @@ class StarshipsList extends Component {
                   }}
                 >
                   {starship.name}
-                </button>
+                </li>
             );
           })}
-        </div>
+        </ul>
 
-        <div className={this.state.cardVisible ? "card-visible" : "card-unvisible"}>
-          <h3>{this.state.starship.name}</h3>
-          <p>Model : {this.state.starship.model}</p>
-          <p>Manufacturer : {this.state.starship.manufacturer}</p>
+        <div className={card ? "card-visible" : "card-unvisible"}>
+          <h3>{starship.name}</h3>
+          <p>Model : {starship.model}</p>
+          <p>Manufacturer : {starship.manufacturer}</p>
         </div>
       </div>
     );
-  }
 }
+
 export default StarshipsList;

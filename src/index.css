@@ -40,3 +40,9 @@ button{
 
   -webkit-appearance: none;
 }
+
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}

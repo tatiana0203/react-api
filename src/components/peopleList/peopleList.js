@@ -1,39 +1,33 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class PeopleList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      person: {
-        name: "",
-        gender: "",
-        birth_year: "",
-      },
-      cardVisible:false
-    };
-  }
+const PeopleList = (props) => {
 
-  setPerson = (name, gender, birth_year) => {
-    this.setState({
-      person: {
-        name: name,
-        gender: gender,
-        birth_year: birth_year,
-      },
-      cardVisible:true
-    });
-    console.log(this.state)
+  const [person,setPerson]=useState({
+    name: "",
+    gender: "",
+    birth_year: "",
+  });
+  const [card,setCard] = useState(false);
+  
+  const showCard = (name, gender, birth_year) => {
+    setPerson( {
+      name: name,
+      gender: gender, 
+      birth_year: birth_year});
+
+    setCard(true)
   };
 
-  render() {
-    return (
+
+
+  return (
       <div className="content-block">
-        <div className="list">
-           {this.props.people.map((person) => {
+        <ul className="list">
+           {props.people.map((person) => {
             return (
-                <button className="list-item" key={person.name}
+                <li className="list-item" key={person.name}
                   onClick={() => {
-                    this.setPerson(
+                    showCard(
                       person.name,
                       person.gender,
                       person.birth_year
@@ -41,25 +35,22 @@ class PeopleList extends Component {
                   }}
                 >
                   {person.name}
-                </button>
+                </li>
             );
           })}
           
-        </div>
+        </ul>
 
           
-        <div className={this.state.cardVisible ? "card-visible" : "card-unvisible"}>
-        <div>
-          <h3>{this.state.person.name}</h3>
-          <p>Birth year : {this.state.person.birth_year}</p>
-          <p>Gender : {this.state.person.gender}</p>
-        </div>
-         
+        <div className={card ? "card-visible" : "card-unvisible"}>
+          <h3>{person.name}</h3>
+          <p>Birth year : {person.birth_year}</p>
+          <p>Gender : {person.gender}</p>
         </div>
 
         
       </div>
     );
-  }
 }
+
 export default PeopleList;

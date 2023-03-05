@@ -1,38 +1,33 @@
-import React, { Component } from "react";
+import { useState } from "react";
 
-class PlanetsList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      planet: {
-        name: "",
-        population: "",
-        terrain: "",
-      },
-      cardVisible:false
-    };
-  }
+const PlanetsList = (props) => {
+ 
+  const [planet,setPlanet] = useState({
+    name: "",
+    population: "",
+    terrain: "",
+  });
+  const [card,setCard] = useState(false)
 
-  setPlanet = (name, population, terrain) => {
-    this.setState({
-      planet: {
+  const showPlanet = (name, population, terrain) => {
+    setPlanet({
         name: name,
         population: population,
         terrain: terrain,
-      },
-      cardVisible:true
-    });
+      });
+    
+    setCard(true)
   };
 
-  render() {
-    return (
+
+  return (
       <div className="content-block">
-        <div className="list">
-          {this.props.planets.map((planet) => {
+        <ul className="list">
+          {props.planets.map((planet) => {
             return (
-                <button className="list-item" key={planet.name}
+                <li className="list-item" key={planet.name}
                   onClick={() => {
-                    this.setPlanet(
+                    showPlanet(
                       planet.name,
                       planet.population,
                       planet.terrain
@@ -40,18 +35,18 @@ class PlanetsList extends Component {
                   }}
                 >
                   {planet.name}
-                </button>
+                </li>
             );
           })}
-        </div>
+        </ul>
 
-        <div className={this.state.cardVisible ? "card-visible" : "card-unvisible"}>
-          <h3>{this.state.planet.name}</h3>
-          <p>Population : {this.state.planet.population}</p>
-          <p>Terrain : {this.state.planet.terrain}</p>
+        <div className={card ? "card-visible" : "card-unvisible"}>
+          <h3>{planet.name}</h3>
+          <p>Population : {planet.population}</p>
+          <p>Terrain : {planet.terrain}</p>
         </div>
       </div>
     );
-  }
 }
+
 export default PlanetsList;
