@@ -12,6 +12,23 @@ body {
   background-size: cover; 
   height: 100vh;
 
+}
+
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark .content-block {
+  background-color: #0a0d15f1;
+}
+
+.dark .buttons-menu{
+  background-color: #0a0d15f1;
+}
+
+.dark {
+  background-color: rgb(17, 14, 47);
   color: white;
 }
 
