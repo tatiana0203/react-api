@@ -5,7 +5,6 @@ import { LanguageProvider } from "./components/languageContext";
 import "./App.css"
 
 const App = () => {
-  //console.log(isDarkTheme)
   return (
     <ThemeProvider>
       <LanguageProvider>

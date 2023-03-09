@@ -6,7 +6,7 @@ const LanguageToggler = () => {
     const { isEngLang, toggleLanguage } = useContext(LanguageContext);
     return (
       <button onClick={toggleLanguage}>
-        {isEngLang ? 'Switch to Ua' : 'Switch to Eng'}
+        {isEngLang ? 'UA' : 'ENG'}
       </button>
     );
   };

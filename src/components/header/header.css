@@ -1,0 +1,17 @@
+.buttons-menu{
+    height: 60px;
+    display: flex;
+    border-radius: 3px;
+    background-color: #252f46b1;
+    justify-content: space-evenly;
+  }
+  
+  .buttons-menu button{
+    width:150px;
+    cursor: pointer;
+    padding: 8px 6px;
+    border: 0;
+    letter-spacing: 1px;
+  
+  }
+  

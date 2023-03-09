@@ -7,16 +7,17 @@ import PlanetsList from "../planetsList/planetsList";
 import StarshipsList from "../starshipsList/starshipsList";
 import { ThemeContext } from "../themeContext";
 
-const SWBase = () => {
+import "./SWBase.css"
 
-  const { isDarkTheme } = useContext(ThemeContext);
-  console.log(isDarkTheme)
+const SWBase = () => {
 
   const override = {
     display: "block",
     margin: "0 auto",
-    borderColor: "red",
   };
+  
+  const { isDarkTheme } = useContext(ThemeContext);
+  
   const [currentList, setCurrentList] = useState("");
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -52,12 +53,12 @@ const SWBase = () => {
   };
 
   return (
-      <div className={isDarkTheme ? "dark" : "light"} >
+      <div className={isDarkTheme ? " content dark" : "content light"} >
         <Header onClick={myRequest} />
         {loading ? (
           <DotLoader
             className="sweet-loading"
-            color="white"
+            color="#eac37133"
             loading={loading}
             cssOverride={override}
             size={100}

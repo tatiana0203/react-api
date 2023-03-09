@@ -1,9 +1,10 @@
 import { useContext } from "react";
 
 import ThemeToggler from "../themeToggler/themeToggler";
-
-import { LanguageContext } from "../languageContext";
 import LanguageToggler from "../languageToggler/languageToggler";
+import { LanguageContext } from "../languageContext";
+
+import "./header.css"
 
 
 const Header = (props) => {

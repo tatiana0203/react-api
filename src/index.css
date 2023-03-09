@@ -1,35 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Basic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap');
 
 body {
   margin: 0;
-  font-family:'Basic', sans-serif;
+  font-family:'Jost', sans-serif;
+  font-weight: 600;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-image: url(background-galaxy.jpg );
-  background-position: center; 
-  background-repeat: no-repeat;  
-  background-size: cover; 
   height: 100vh;
 
 }
 
+.dark {
+  background-image: url(back-dark.png );
+  background-position: center; 
+  background-repeat: no-repeat;  
+  background-size: cover; 
+  height: 100vh;
+  color: white;
+}
+
 .light {
-  background-color: white;
+  background-image: url(back-light.jpg );
+  background-position: center; 
+  background-repeat: no-repeat;  
+  background-size: cover; 
+  height: 100vh;
   color: black;
 }
 
+.light .content-block{
+  background-color: #ffffffb4;
+}
+
+.light .buttons-menu{
+  background-color: #ffffffb4;
+}
+
 .dark .content-block {
-  background-color: #0a0d15f1;
+  background-color: #0a0d15db;
 }
 
 .dark .buttons-menu{
-  background-color: #0a0d15f1;
-}
-
-.dark {
-  background-color: rgb(17, 14, 47);
-  color: white;
+  background-color: #0a0d15db;
 }
 
 

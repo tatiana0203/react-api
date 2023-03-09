@@ -1,0 +1,31 @@
+.content-block{
+    display: flex;
+    margin: 20px;
+    padding: 30px;
+    padding: 30px;
+    border-radius: 3px;
+    background-color: #252f465e;
+  }
+  
+  .list{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 80px 0 0;
+  }
+  
+  .list-item{
+    cursor: pointer;
+    text-align: left;
+    width: 210px;
+    padding: 15px 35px;
+    border-bottom: 1px solid;
+  }
+  
+  .card-visible {
+    display: block;
+  }
+  
+  .card-unvisible {
+    display: none;
+  }
