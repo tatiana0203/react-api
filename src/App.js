@@ -8,6 +8,7 @@ const App = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
+      <h1>check br 7</h1>
         <SWBase />
       </LanguageProvider>
     </ThemeProvider>
