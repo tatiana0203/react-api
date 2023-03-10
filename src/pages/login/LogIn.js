@@ -17,7 +17,7 @@ const LogIn = (props) => {
             <div className="form">
                 <form className="login-form">
                 <label className="checkbox style-h">
-                    <input type="checkbox" onClick={props.onClick}/>
+                    <input type="checkbox" onClick={props.onClick} checked={props.isLogged}/>
                     <div className="checkbox__checkmark"></div>
                     <div className="checkbox__body">
                     {props.isLogged ? 
@@ -25,7 +25,7 @@ const LogIn = (props) => {
                     (isEngLang ? "Click to log in!" : "Натисни на мене!")}
                     </div>
                 </label>
-                <Link to="/main"><button disabled={props.isLogged ? false : true}>{isEngLang ? "Log In" : "Ввійти"}</button></Link>
+                <Link to="/main"><button disabled={!props.isLogged}>{isEngLang ? "Log In" : "Ввійти"}</button></Link>
                 <p className="message"></p>
                 </form>
             </div>
