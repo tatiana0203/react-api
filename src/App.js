@@ -5,6 +5,7 @@ import { LanguageProvider } from "./components/languageContext";
 import "./App.css"
 
 const App = () => {
+  
   return (
     <ThemeProvider>
       <LanguageProvider>
