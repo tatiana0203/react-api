@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/react-api/static/css/main.35f39a93.css",
+    "main.js": "/react-api/static/js/main.79688670.js",
+    "static/js/787.5117173b.chunk.js": "/react-api/static/js/787.5117173b.chunk.js",
+    "static/media/back-dark.png": "/react-api/static/media/back-dark.a67fa0b7430035688042.png",
+    "static/media/back-light.jpg": "/react-api/static/media/back-light.a09114858adf7af1f8e5.jpg",
+    "static/media/back-login.jpg": "/react-api/static/media/back-login.96d9289216eb59945146.jpg",
+    "static/media/droid.jpg": "/react-api/static/media/droid.d5d6e971765600688300.jpg",
+    "index.html": "/react-api/index.html",
+    "main.35f39a93.css.map": "/react-api/static/css/main.35f39a93.css.map",
+    "main.79688670.js.map": "/react-api/static/js/main.79688670.js.map",
+    "787.5117173b.chunk.js.map": "/react-api/static/js/787.5117173b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.35f39a93.css",
+    "static/js/main.79688670.js"
+  ]
+}
