@@ -21,8 +21,6 @@ const App = () => {
     setIsLogged(!isLogged);
   };
 
-  console.log(isLogged)
-
   return (
     <ThemeProvider>
       <LanguageProvider>
@@ -30,7 +28,7 @@ const App = () => {
           <Routes>
             <Route index element={<Home />} />
             <Route path="/login" element={<LogIn isLogged={isLogged} onClick={toggleLogin}/>} />
-            <Route path="/main/*" element={<SWBase/>}/>
+            {isLogged ? <Route path="/main/*" element={<SWBase isLogged={isLogged}/>}/> : null}
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
         </BrowserRouter>
