@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
+import { Route, Routes, Outlet} from "react-router-dom";
 import DotLoader from "react-spinners/DotLoader";
+
 
 import Header from "../header/header";
 import PeopleList from "../peopleList/peopleList";
@@ -13,12 +15,11 @@ const SWBase = () => {
 
   const override = {
     display: "block",
-    margin: "0 auto",
+    margin: "100px auto",
   };
   
   const { isDarkTheme } = useContext(ThemeContext);
-  
-  const [currentList, setCurrentList] = useState("");
+
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -27,34 +28,28 @@ const SWBase = () => {
     redirect: "follow",
   };
 
-  const myRequest = (resource) => {
+  const myRequest = (link) => {
     setLoading(true);
-    fetch(`https://swapi.dev/api/${resource}`, requestOptions)
+    fetch(`https://swapi.dev/api/${link}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        setCurrentList(resource);
         setList(result.results);
         setLoading(false);
       })
       .catch((error) => console.log("error", error));
   };
 
-  const showList = (resource) => {
-    switch (resource) {
-      case "people":
-        return <PeopleList people={list} />;
-      case "planets":
-        return <PlanetsList planets={list} />;
-      case "starships":
-        return <StarshipsList starships={list} />;
-      default:
-        return null;
-    }
-  };
-
   return (
       <div className={isDarkTheme ? " content dark" : "content light"} >
+
         <Header onClick={myRequest} />
+
+        <Routes>
+          <Route path="people" element={<PeopleList people={list}/>}/>
+          <Route path="planets" element={<PlanetsList planets={list}/>}/>
+          <Route path="starships" element={<StarshipsList starships={list}/>}/>
+        </Routes>
+
         {loading ? (
           <DotLoader
             className="sweet-loading"
@@ -66,7 +61,7 @@ const SWBase = () => {
             data-testid="loader"
           />
         ) : (
-          showList(currentList)
+          <Outlet />
         )}
 
       </div>

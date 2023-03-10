@@ -4,11 +4,11 @@
     border-radius: 3px;
     background-color: #252f46b1;
     justify-content: space-evenly;
+    align-items: center;
   }
   
-  .buttons-menu button{
-    width:150px;
-    cursor: pointer;
+  .buttons-menu a{
+    text-decoration: none;
     padding: 8px 6px;
     border: 0;
     letter-spacing: 1px;

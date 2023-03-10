@@ -41,14 +41,23 @@ body {
   background-color: #0a0d15db;
 }
 
-.dark .buttons-menu{
+.dark .buttons-menu {
   background-color: #0a0d15db;
+}
+
+.light .buttons-menu a{
+  color: black;
 }
 
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a{
+  text-decoration: none;
+  color: black;
 }
 
 button{

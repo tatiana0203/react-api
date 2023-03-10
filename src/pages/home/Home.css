@@ -1,0 +1,65 @@
+.home-page{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url(droid.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.home-text{
+    width: 100%;
+    padding: 8% 0  0;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    background: #ffffffc1;
+    max-width: 560px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.login-button{
+    text-align: center;
+    cursor: pointer;
+    font-size:24px;
+    border-radius: 4px;
+    background-color:#d35400;
+    border: none;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+  }
+  
+  
+  .login-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .login-button span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .login-button:hover span {
+    padding-right: 25px;
+  }
+  
+  .login-button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  

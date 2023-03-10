@@ -1,0 +1,9 @@
+.language-toggler{
+    position: fixed;
+    top: 10px;
+    right: 40px;
+}
+
+.language-toggler img{
+    width: 40px;
+}

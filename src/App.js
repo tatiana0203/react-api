@@ -1,15 +1,39 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
 import SWBase from "./components/SWBase/SWBase";
+
+import Home from "./pages/home/Home";
+import ErrorPage from "./pages/errorPage/ErrorPage";
+import LogIn from "./pages/login/LogIn";
+
 import { ThemeProvider } from "./components/themeContext";
 import { LanguageProvider } from "./components/languageContext";
 
-import "./App.css"
+import "./App.css";
+
 
 const App = () => {
+
+  const [isLogged,setIsLogged]=useState(false)
+
+  const toggleLogin = () => {
+    setIsLogged(!isLogged);
+  };
+
+  console.log(isLogged)
+
   return (
     <ThemeProvider>
       <LanguageProvider>
-      <h1>check br 7</h1>
-        <SWBase />
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="/login" element={<LogIn isLogged={isLogged} onClick={toggleLogin}/>} />
+            <Route path="/main/*" element={<SWBase/>}/>
+            <Route path="*" element={<ErrorPage/>}/>
+          </Routes>
+        </BrowserRouter>
       </LanguageProvider>
     </ThemeProvider>
   );
