@@ -25,7 +25,7 @@ const LogIn = (props) => {
                     (isEngLang ? "Click to log in!" : "Натисни на мене!")}
                     </div>
                 </label>
-                <Link to="/main"><button disabled={!props.isLogged }>{isEngLang ? "Log In" : "Ввійти"}</button></Link>
+                <Link to="/main"><button disabled={props.isLogged ? false : true}>{isEngLang ? "Log In" : "Ввійти"}</button></Link>
                 <p className="message"></p>
                 </form>
             </div>
